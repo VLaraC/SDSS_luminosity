@@ -32,48 +32,50 @@ f_rshift = list(filter(lambda dato: dato >= 1 and dato <= 3, a_rshift))
 #There are 218261 values from full file that have 297301
 
 def Bz (a):
+    global Bz
     for z in (a):
         Bz = math.sqrt(0.6889*1+(1-0.6889)*(1+z)**3)
         #print (Bz)
+Bz(f_rshift)       
         
-        def oper (b):
-                iint =lambda x:z/Bz
-                sec_eq = (quad(iint, 0, z)[0])
-                #print (sec_eq)
+def oper (b):
+    global sec_eq
+    for z in (b):
+        iint =lambda x:z/Bz
+        sec_eq = (quad(iint, 0, z)[0])
+        #print (sec_eq)
+oper(f_rshift)                    
+         
+def dL (c):
+    global dL
+    for z in (c):
+        H0 = 67.66
+        dL = ((speed_of_light*(1+z)/H0)*sec_eq)
+        #print (dL)       
+dL(f_rshift)
                 
-                def dL (c):
-                    H0 = 67.66
-                    dL = ((speed_of_light*(1+z)/H0)*sec_eq)
-                    #print (dL)
-                    
-                    def miu (d):
-                        miu = 5*((math.log10(dL)*z)-1)
-                        print (miu) #Taking 73% of hole file size
-                        
-                        
-                    miu(f_rshift)
-                    
-                dL(f_rshift)
-                
-        oper(f_rshift)        
-        
-Bz(f_rshift)   
+def d_mod (d):
+    global miu
+    for z in (d):
+        miu = 5*((math.log10(dL)*z)-1)
+        #print (miu) #Taking 73% of hole file size       
+d_mod(f_rshift)   
 
-"""
 #Normalize info
-z_max = np.max(miu)
-z_min = np.min(miu)
+mod_max = max(miu)
+print (mod_max)
+mod_min = min(miu)
+print (mod_min)         
 
-for a in f_rshift:
-    norm_rshift = (a-z_min/z_max-z_min)
-    print(norm_rshift)
-"""    
-"""
+for e in miu:
+    d_mod_norm = (e-mod_min/mod_max-mod_min)
+    print(d_mod_norm)
+
 #Convert list in array
-n = np.array(norm_rshift)
-na = np.arange(218261).reshape((1, -1))
-#print (n.size)
-"""
+mod_convert = np.array(miu)
+mod_array = np.arange(218261).reshape((1, -1))
+#print (np.size(mod_array))
+
 """
 #-----------------------------EVALUATE ALGORITHMS-----------------------------
 wcss = []
